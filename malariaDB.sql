@@ -1,6 +1,6 @@
 use Malaria
 go
-/*
+
 create table UserLevel
 (
 UserLevelID int identity(1,1),
@@ -77,11 +77,11 @@ Date_Created date
 create table Malaria_Log
 (
 Log_ID int identity(1,1) primary key,
-fk_MT_ID int,
-fk_MC_ID int,
-fk_MF_ID int,
-fk_MA_ID int,
-fk_MP_ID int,
+fk_MT_ID int null,
+fk_MC_ID int null,
+fk_MF_ID int null,
+fk_MA_ID int null,
+fk_MP_ID int null,
 constraint fk_MT_ID foreign key (fk_MT_ID) REFERENCES Malaria_Treatments(ID),
 constraint fk_MC_ID foreign key (fk_MC_ID) REFERENCES Malaria_Controls(ID),
 constraint fk_MF_ID foreign key (fk_MF_ID) REFERENCES Malaria_Facts(ID),
@@ -90,5 +90,3 @@ constraint fk_MP_ID foreign key (fk_MP_ID) REFERENCES Malaria_Prevention(ID),
 User_Name_ID int,
 constraint User_Name_ID foreign key (User_Name_ID) REFERENCES UserNames(ID)
 )
-
-*/

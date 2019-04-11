@@ -9,6 +9,28 @@ namespace WebApplication1.Controllers
 {
     public class MalariaLogInController : ApiController
     {
-        public IEnumerable<malaria>
+        //public IEnumerable<Malaria_Log> Get()
+        //{
+        //    using (MalariaEntities2 dd = new MalariaEntities2())
+        //    {
+        //        return dd.Malaria_Log.ToList();
+        //    }
+        //}
+
+        public IEnumerable<Malaria_Facts> Get()
+        {
+            using (MalariaEntities2 dd = new MalariaEntities2())
+            {
+                return dd.Malaria_Facts.ToList();
+            }
+        }
+
+        //public IEnumerable<Malaria_Prevention> Get()
+        //{
+        //    using (MalariaEntities2 dd = new MalariaEntities2())
+        //    {
+        //        return dd.Malaria_Prevention.ToList();
+        //    }
+        //}
     }
 }

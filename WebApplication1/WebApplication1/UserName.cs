@@ -18,6 +18,7 @@ namespace WebApplication1
         public UserName()
         {
             this.LogIns = new HashSet<LogIn>();
+            this.Malaria_Log = new HashSet<Malaria_Log>();
         }
     
         public int ID { get; set; }
@@ -26,6 +27,8 @@ namespace WebApplication1
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LogIn> LogIns { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Malaria_Log> Malaria_Log { get; set; }
         public virtual UserDetail UserDetail { get; set; }
     }
 }

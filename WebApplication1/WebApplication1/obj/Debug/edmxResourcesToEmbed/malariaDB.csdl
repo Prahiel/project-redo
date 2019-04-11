@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MalariaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LogIn">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="fk_UserNamesID" Type="Int32" />
+    <NavigationProperty Name="UserName" Relationship="Self.FK_UserNames" FromRole="LogIn" ToRole="UserNames" />
+  </EntityType>
+  <EntityType Name="Malaria_Areas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Area_Details" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Created" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Malaria_Log" Relationship="Self.fk_MA_ID" FromRole="Malaria_Areas" ToRole="Malaria_Log" />
+  </EntityType>
+  <EntityType Name="Malaria_Controls">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Control_Details" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Created" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Malaria_Log" Relationship="Self.fk_MC_ID" FromRole="Malaria_Controls" ToRole="Malaria_Log" />
+  </EntityType>
+  <EntityType Name="Malaria_Facts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Facts_Details" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Created" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Malaria_Log" Relationship="Self.fk_MF_ID" FromRole="Malaria_Facts" ToRole="Malaria_Log" />
+  </EntityType>
+  <EntityType Name="Malaria_Log">
+    <Key>
+      <PropertyRef Name="Log_ID" />
+    </Key>
+    <Property Name="Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fk_MT_ID" Type="Int32" />
+    <Property Name="fk_MC_ID" Type="Int32" />
+    <Property Name="fk_MF_ID" Type="Int32" />
+    <Property Name="fk_MA_ID" Type="Int32" />
+    <Property Name="fk_MP_ID" Type="Int32" />
+    <Property Name="User_Name_ID" Type="Int32" />
+    <NavigationProperty Name="Malaria_Areas" Relationship="Self.fk_MA_ID" FromRole="Malaria_Log" ToRole="Malaria_Areas" />
+    <NavigationProperty Name="Malaria_Controls" Relationship="Self.fk_MC_ID" FromRole="Malaria_Log" ToRole="Malaria_Controls" />
+    <NavigationProperty Name="Malaria_Facts" Relationship="Self.fk_MF_ID" FromRole="Malaria_Log" ToRole="Malaria_Facts" />
+    <NavigationProperty Name="Malaria_Prevention" Relationship="Self.fk_MP_ID" FromRole="Malaria_Log" ToRole="Malaria_Prevention" />
+    <NavigationProperty Name="Malaria_Treatments" Relationship="Self.fk_MT_ID" FromRole="Malaria_Log" ToRole="Malaria_Treatments" />
+    <NavigationProperty Name="UserName" Relationship="Self.User_Name_ID" FromRole="Malaria_Log" ToRole="UserNames" />
+  </EntityType>
+  <EntityType Name="Malaria_Prevention">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prevention_Details" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Created" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Malaria_Log" Relationship="Self.fk_MP_ID" FromRole="Malaria_Prevention" ToRole="Malaria_Log" />
+  </EntityType>
+  <EntityType Name="Malaria_Treatments">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Treatment_Details" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="Date_Created" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Malaria_Log" Relationship="Self.fk_MT_ID" FromRole="Malaria_Treatments" ToRole="Malaria_Log" />
+  </EntityType>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="UserLevelID" Type="Int32" />
+    <NavigationProperty Name="UserNames" Relationship="Self.FK_UserDetails" FromRole="UserDetails" ToRole="UserNames" />
+    <NavigationProperty Name="UserLevel" Relationship="Self.FK_UserLevel" FromRole="UserDetails" ToRole="UserLevel" />
+  </EntityType>
+  <EntityType Name="UserLevel">
+    <Key>
+      <PropertyRef Name="UserLevelID" />
+    </Key>
+    <Property Name="UserLevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Access_Rights" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserLevel" FromRole="UserLevel" ToRole="UserDetails" />
+  </EntityType>
+  <EntityType Name="UserName">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fk_UserId" Type="Int32" />
+    <NavigationProperty Name="LogIns" Relationship="Self.FK_UserNames" FromRole="UserNames" ToRole="LogIn" />
+    <NavigationProperty Name="Malaria_Log" Relationship="Self.User_Name_ID" FromRole="UserNames" ToRole="Malaria_Log" />
+    <NavigationProperty Name="UserDetail" Relationship="Self.FK_UserDetails" FromRole="UserNames" ToRole="UserDetails" />
+  </EntityType>
+  <Association Name="FK_UserNames">
+    <End Role="UserNames" Type="Self.UserName" Multiplicity="0..1" />
+    <End Role="LogIn" Type="Self.LogIn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserNames">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LogIn">
+        <PropertyRef Name="fk_UserNamesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MA_ID">
+    <End Role="Malaria_Areas" Type="Self.Malaria_Areas" Multiplicity="0..1" />
+    <End Role="Malaria_Log" Type="Self.Malaria_Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Malaria_Areas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Malaria_Log">
+        <PropertyRef Name="fk_MA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MC_ID">
+    <End Role="Malaria_Controls" Type="Self.Malaria_Controls" Multiplicity="0..1" />
+    <End Role="Malaria_Log" Type="Self.Malaria_Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Malaria_Controls">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Malaria_Log">
+        <PropertyRef Name="fk_MC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MF_ID">
+    <End Role="Malaria_Facts" Type="Self.Malaria_Facts" Multiplicity="0..1" />
+    <End Role="Malaria_Log" Type="Self.Malaria_Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Malaria_Facts">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Malaria_Log">
+        <PropertyRef Name="fk_MF_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MP_ID">
+    <End Role="Malaria_Prevention" Type="Self.Malaria_Prevention" Multiplicity="0..1" />
+    <End Role="Malaria_Log" Type="Self.Malaria_Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Malaria_Prevention">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Malaria_Log">
+        <PropertyRef Name="fk_MP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_MT_ID">
+    <End Role="Malaria_Treatments" Type="Self.Malaria_Treatments" Multiplicity="0..1" />
+    <End Role="Malaria_Log" Type="Self.Malaria_Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Malaria_Treatments">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Malaria_Log">
+        <PropertyRef Name="fk_MT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="User_Name_ID">
+    <End Role="UserNames" Type="Self.UserName" Multiplicity="0..1" />
+    <End Role="Malaria_Log" Type="Self.Malaria_Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserNames">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Malaria_Log">
+        <PropertyRef Name="User_Name_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserDetails">
+    <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1" />
+    <End Role="UserNames" Type="Self.UserName" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserNames">
+        <PropertyRef Name="fk_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLevel">
+    <End Role="UserLevel" Type="Self.UserLevel" Multiplicity="0..1" />
+    <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLevel">
+        <PropertyRef Name="UserLevelID" />
+      </Principal>
+      <Dependent Role="UserDetails">
+        <PropertyRef Name="UserLevelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MalariaEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LogIns" EntityType="Self.LogIn" />
+    <EntitySet Name="Malaria_Areas" EntityType="Self.Malaria_Areas" />
+    <EntitySet Name="Malaria_Controls" EntityType="Self.Malaria_Controls" />
+    <EntitySet Name="Malaria_Facts" EntityType="Self.Malaria_Facts" />
+    <EntitySet Name="Malaria_Log" EntityType="Self.Malaria_Log" />
+    <EntitySet Name="Malaria_Prevention" EntityType="Self.Malaria_Prevention" />
+    <EntitySet Name="Malaria_Treatments" EntityType="Self.Malaria_Treatments" />
+    <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+    <EntitySet Name="UserLevels" EntityType="Self.UserLevel" />
+    <EntitySet Name="UserNames" EntityType="Self.UserName" />
+    <AssociationSet Name="FK_UserNames" Association="Self.FK_UserNames">
+      <End Role="UserNames" EntitySet="UserNames" />
+      <End Role="LogIn" EntitySet="LogIns" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MA_ID" Association="Self.fk_MA_ID">
+      <End Role="Malaria_Areas" EntitySet="Malaria_Areas" />
+      <End Role="Malaria_Log" EntitySet="Malaria_Log" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MC_ID" Association="Self.fk_MC_ID">
+      <End Role="Malaria_Controls" EntitySet="Malaria_Controls" />
+      <End Role="Malaria_Log" EntitySet="Malaria_Log" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MF_ID" Association="Self.fk_MF_ID">
+      <End Role="Malaria_Facts" EntitySet="Malaria_Facts" />
+      <End Role="Malaria_Log" EntitySet="Malaria_Log" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MP_ID" Association="Self.fk_MP_ID">
+      <End Role="Malaria_Prevention" EntitySet="Malaria_Prevention" />
+      <End Role="Malaria_Log" EntitySet="Malaria_Log" />
+    </AssociationSet>
+    <AssociationSet Name="fk_MT_ID" Association="Self.fk_MT_ID">
+      <End Role="Malaria_Treatments" EntitySet="Malaria_Treatments" />
+      <End Role="Malaria_Log" EntitySet="Malaria_Log" />
+    </AssociationSet>
+    <AssociationSet Name="User_Name_ID" Association="Self.User_Name_ID">
+      <End Role="UserNames" EntitySet="UserNames" />
+      <End Role="Malaria_Log" EntitySet="Malaria_Log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserDetails" Association="Self.FK_UserDetails">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="UserNames" EntitySet="UserNames" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLevel" Association="Self.FK_UserLevel">
+      <End Role="UserLevel" EntitySet="UserLevels" />
+      <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

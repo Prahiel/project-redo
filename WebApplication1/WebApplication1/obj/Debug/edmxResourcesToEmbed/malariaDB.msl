@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MalariaModelStoreContainer" CdmEntityContainer="MalariaEntities2">
+    <EntitySetMapping Name="LogIns">
+      <EntityTypeMapping TypeName="MalariaModel.LogIn">
+        <MappingFragment StoreEntitySet="LogIn">
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="fk_UserNamesID" ColumnName="fk_UserNamesID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Malaria_Areas">
+      <EntityTypeMapping TypeName="MalariaModel.Malaria_Areas">
+        <MappingFragment StoreEntitySet="Malaria_Areas">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Area_Details" ColumnName="Area_Details" />
+          <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Malaria_Controls">
+      <EntityTypeMapping TypeName="MalariaModel.Malaria_Controls">
+        <MappingFragment StoreEntitySet="Malaria_Controls">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Control_Details" ColumnName="Control_Details" />
+          <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Malaria_Facts">
+      <EntityTypeMapping TypeName="MalariaModel.Malaria_Facts">
+        <MappingFragment StoreEntitySet="Malaria_Facts">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Facts_Details" ColumnName="Facts_Details" />
+          <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Malaria_Log">
+      <EntityTypeMapping TypeName="MalariaModel.Malaria_Log">
+        <MappingFragment StoreEntitySet="Malaria_Log">
+          <ScalarProperty Name="Log_ID" ColumnName="Log_ID" />
+          <ScalarProperty Name="fk_MT_ID" ColumnName="fk_MT_ID" />
+          <ScalarProperty Name="fk_MC_ID" ColumnName="fk_MC_ID" />
+          <ScalarProperty Name="fk_MF_ID" ColumnName="fk_MF_ID" />
+          <ScalarProperty Name="fk_MA_ID" ColumnName="fk_MA_ID" />
+          <ScalarProperty Name="fk_MP_ID" ColumnName="fk_MP_ID" />
+          <ScalarProperty Name="User_Name_ID" ColumnName="User_Name_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Malaria_Prevention">
+      <EntityTypeMapping TypeName="MalariaModel.Malaria_Prevention">
+        <MappingFragment StoreEntitySet="Malaria_Prevention">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Prevention_Details" ColumnName="Prevention_Details" />
+          <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Malaria_Treatments">
+      <EntityTypeMapping TypeName="MalariaModel.Malaria_Treatments">
+        <MappingFragment StoreEntitySet="Malaria_Treatments">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Treatment_Details" ColumnName="Treatment_Details" />
+          <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="MalariaModel.UserDetail">
+        <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="UserLevelID" ColumnName="UserLevelID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLevels">
+      <EntityTypeMapping TypeName="MalariaModel.UserLevel">
+        <MappingFragment StoreEntitySet="UserLevel">
+          <ScalarProperty Name="UserLevelID" ColumnName="UserLevelID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Access_Rights" ColumnName="Access_Rights" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserNames">
+      <EntityTypeMapping TypeName="MalariaModel.UserName">
+        <MappingFragment StoreEntitySet="UserNames">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName1" ColumnName="UserName" />
+          <ScalarProperty Name="fk_UserId" ColumnName="fk_UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

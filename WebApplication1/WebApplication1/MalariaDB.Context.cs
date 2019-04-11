@@ -13,10 +13,10 @@ namespace WebApplication1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MalariaEntities : DbContext
+    public partial class MalariaEntities2 : DbContext
     {
-        public MalariaEntities()
-            : base("name=MalariaEntities")
+        public MalariaEntities2()
+            : base("name=MalariaEntities2")
         {
         }
     
@@ -26,6 +26,12 @@ namespace WebApplication1
         }
     
         public virtual DbSet<LogIn> LogIns { get; set; }
+        public virtual DbSet<Malaria_Areas> Malaria_Areas { get; set; }
+        public virtual DbSet<Malaria_Controls> Malaria_Controls { get; set; }
+        public virtual DbSet<Malaria_Facts> Malaria_Facts { get; set; }
+        public virtual DbSet<Malaria_Log> Malaria_Log { get; set; }
+        public virtual DbSet<Malaria_Prevention> Malaria_Prevention { get; set; }
+        public virtual DbSet<Malaria_Treatments> Malaria_Treatments { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<UserLevel> UserLevels { get; set; }
         public virtual DbSet<UserName> UserNames { get; set; }

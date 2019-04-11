@@ -242,22 +242,40 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LogIn.cs">
-      <DependentUpon>MalariaDB.tt</DependentUpon>
+      <DependentUpon>malariadb.tt</DependentUpon>
     </Compile>
-    <Compile Include="MalariaDB.Context.cs">
+    <Compile Include="malariadb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MalariaDB.Context.tt</DependentUpon>
+      <DependentUpon>malariadb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="MalariaDB.cs">
+    <Compile Include="malariadb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MalariaDB.tt</DependentUpon>
+      <DependentUpon>malariadb.tt</DependentUpon>
     </Compile>
-    <Compile Include="MalariaDB.Designer.cs">
+    <Compile Include="malariadb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MalariaDB.edmx</DependentUpon>
+      <DependentUpon>malariadb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Malaria_Areas.cs">
+      <DependentUpon>malariadb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Malaria_Controls.cs">
+      <DependentUpon>malariadb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Malaria_Facts.cs">
+      <DependentUpon>malariadb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Malaria_Log.cs">
+      <DependentUpon>malariadb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Malaria_Prevention.cs">
+      <DependentUpon>malariadb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Malaria_Treatments.cs">
+      <DependentUpon>malariadb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -267,13 +285,13 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UserDetail.cs">
-      <DependentUpon>MalariaDB.tt</DependentUpon>
+      <DependentUpon>malariadb.tt</DependentUpon>
     </Compile>
     <Compile Include="UserLevel.cs">
-      <DependentUpon>MalariaDB.tt</DependentUpon>
+      <DependentUpon>malariadb.tt</DependentUpon>
     </Compile>
     <Compile Include="UserName.cs">
-      <DependentUpon>MalariaDB.tt</DependentUpon>
+      <DependentUpon>malariadb.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -283,15 +301,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="MalariaDB.Context.tt">
+    <Content Include="malariadb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MalariaDB.edmx</DependentUpon>
-      <LastGenOutput>MalariaDB.Context.cs</LastGenOutput>
+      <DependentUpon>malariadb.edmx</DependentUpon>
+      <LastGenOutput>malariadb.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="MalariaDB.tt">
+    <Content Include="malariadb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MalariaDB.edmx</DependentUpon>
-      <LastGenOutput>MalariaDB.cs</LastGenOutput>
+      <DependentUpon>malariadb.edmx</DependentUpon>
+      <LastGenOutput>malariadb.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -317,12 +335,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="MalariaDB.edmx">
+    <EntityDeploy Include="malariadb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MalariaDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>malariadb.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="MalariaDB.edmx.diagram">
-      <DependentUpon>MalariaDB.edmx</DependentUpon>
+    <Content Include="malariadb.edmx.diagram">
+      <DependentUpon>malariadb.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
