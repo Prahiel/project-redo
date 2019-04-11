@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MalariaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LogIn">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="1000" />
+          <Property Name="fk_UserNamesID" Type="int" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="Surname" Type="varchar" MaxLength="500" />
+          <Property Name="Email" Type="varchar" MaxLength="500" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="UserLevelID" Type="int" />
+        </EntityType>
+        <EntityType Name="UserLevel">
+          <Key>
+            <PropertyRef Name="UserLevelID" />
+          </Key>
+          <Property Name="UserLevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Access_Rights" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="UserNames">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="fk_UserId" Type="int" />
+        </EntityType>
+        <Association Name="FK_UserDetails">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+          <End Role="UserNames" Type="Self.UserNames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserNames">
+              <PropertyRef Name="fk_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLevel">
+          <End Role="UserLevel" Type="Self.UserLevel" Multiplicity="0..1" />
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLevel">
+              <PropertyRef Name="UserLevelID" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="UserLevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserNames">
+          <End Role="UserNames" Type="Self.UserNames" Multiplicity="0..1" />
+          <End Role="LogIn" Type="Self.LogIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserNames">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LogIn">
+              <PropertyRef Name="fk_UserNamesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MalariaModelStoreContainer">
+          <EntitySet Name="LogIn" EntityType="Self.LogIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLevel" EntityType="Self.UserLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserNames" EntityType="Self.UserNames" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_UserDetails" Association="Self.FK_UserDetails">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="UserNames" EntitySet="UserNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLevel" Association="Self.FK_UserLevel">
+            <End Role="UserLevel" EntitySet="UserLevel" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserNames" Association="Self.FK_UserNames">
+            <End Role="UserNames" EntitySet="UserNames" />
+            <End Role="LogIn" EntitySet="LogIn" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MalariaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LogIn">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="fk_UserNamesID" Type="Int32" />
+          <NavigationProperty Name="UserName" Relationship="Self.FK_UserNames" FromRole="LogIn" ToRole="UserNames" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="UserLevelID" Type="Int32" />
+          <NavigationProperty Name="UserNames" Relationship="Self.FK_UserDetails" FromRole="UserDetails" ToRole="UserNames" />
+          <NavigationProperty Name="UserLevel" Relationship="Self.FK_UserLevel" FromRole="UserDetails" ToRole="UserLevel" />
+        </EntityType>
+        <EntityType Name="UserLevel">
+          <Key>
+            <PropertyRef Name="UserLevelID" />
+          </Key>
+          <Property Name="UserLevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Access_Rights" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserDetails" Relationship="Self.FK_UserLevel" FromRole="UserLevel" ToRole="UserDetails" />
+        </EntityType>
+        <EntityType Name="UserName">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fk_UserId" Type="Int32" />
+          <NavigationProperty Name="LogIns" Relationship="Self.FK_UserNames" FromRole="UserNames" ToRole="LogIn" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK_UserDetails" FromRole="UserNames" ToRole="UserDetails" />
+        </EntityType>
+        <Association Name="FK_UserNames">
+          <End Role="UserNames" Type="Self.UserName" Multiplicity="0..1" />
+          <End Role="LogIn" Type="Self.LogIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserNames">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LogIn">
+              <PropertyRef Name="fk_UserNamesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDetails">
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1" />
+          <End Role="UserNames" Type="Self.UserName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserNames">
+              <PropertyRef Name="fk_UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLevel">
+          <End Role="UserLevel" Type="Self.UserLevel" Multiplicity="0..1" />
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLevel">
+              <PropertyRef Name="UserLevelID" />
+            </Principal>
+            <Dependent Role="UserDetails">
+              <PropertyRef Name="UserLevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MalariaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LogIns" EntityType="Self.LogIn" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+          <EntitySet Name="UserLevels" EntityType="Self.UserLevel" />
+          <EntitySet Name="UserNames" EntityType="Self.UserName" />
+          <AssociationSet Name="FK_UserNames" Association="Self.FK_UserNames">
+            <End Role="UserNames" EntitySet="UserNames" />
+            <End Role="LogIn" EntitySet="LogIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetails" Association="Self.FK_UserDetails">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="UserNames" EntitySet="UserNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLevel" Association="Self.FK_UserLevel">
+            <End Role="UserLevel" EntitySet="UserLevels" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MalariaModelStoreContainer" CdmEntityContainer="MalariaEntities">
+          <EntitySetMapping Name="LogIns">
+            <EntityTypeMapping TypeName="MalariaModel.LogIn">
+              <MappingFragment StoreEntitySet="LogIn">
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="fk_UserNamesID" ColumnName="fk_UserNamesID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="MalariaModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="UserLevelID" ColumnName="UserLevelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLevels">
+            <EntityTypeMapping TypeName="MalariaModel.UserLevel">
+              <MappingFragment StoreEntitySet="UserLevel">
+                <ScalarProperty Name="UserLevelID" ColumnName="UserLevelID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Access_Rights" ColumnName="Access_Rights" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserNames">
+            <EntityTypeMapping TypeName="MalariaModel.UserName">
+              <MappingFragment StoreEntitySet="UserNames">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName1" ColumnName="UserName" />
+                <ScalarProperty Name="fk_UserId" ColumnName="fk_UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
